@@ -3,13 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="category1">소파</string>
-    <string name="category2">창문</string>
-    <string name="category3">벽지</string>
-    <string name="category4">소파</string>
-    <string name="category5">소파</string>
-    <string name="category6">소파</string>
-    <string name="category7">소파</string>
-    <string name="category8">소파</string>
-    <string name="category9">소파</string>
+    <string name="category1">지붕</string>
+    <string name="category2">벽</string>
+    <string name="category3">창문</string>
+    <string name="category4">의자</string>
+    <string name="category5">화분</string>
+    <string name="category6">소품</string>
 </resources>

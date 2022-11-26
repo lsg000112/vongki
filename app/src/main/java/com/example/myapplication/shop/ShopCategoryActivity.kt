@@ -17,9 +17,11 @@ class ShopCategoryActivity :AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.backButton.setOnClickListener{finish()}
+
         println(binding.category1)
         var id: Int
-        for(i: Int in 1..9){
+        for(i: Int in 1..6){
             id = resources.getIdentifier("category$i", "id", packageName)
             binding.root.findViewById<View?>(id)
                     .setOnClickListener {

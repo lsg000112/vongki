@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityLobbyBinding
 import com.example.myapplication.ocr.OCRActivity
@@ -47,15 +48,17 @@ class NavActivity : AppCompatActivity() {
         }
 
         //로그아웃
-        binding.logOutButton.setOnClickListener {
-            //val intent = Intent(this, LoginActivity::class.java)
-            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            //startActivity(intent)
-            auth?.signOut()
-            pref.edit().remove("isFirst").apply()
-            finish()
+        binding.logoutLayout.setOnClickListener {
+//            binding.logOutButton.setOnClickListener {
+                //val intent = Intent(this, LoginActivity::class.java)
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                //startActivity(intent)
+                auth?.signOut()
+                pref.edit().remove("isFirst").apply()
+                Toast.makeText(this, "원활환 구동을 위해 애플리케이션을 종료합니다.", Toast.LENGTH_LONG).show()
+                finish()
+//            }
         }
-
         binding.getMileageButton.setOnClickListener{  //마일리지 적립
             currentUser.get().addOnSuccessListener { document ->
                 if(document != null){
@@ -66,17 +69,18 @@ class NavActivity : AppCompatActivity() {
         }
 
         // ocr 액티비티
-        binding.ocrButton.setOnClickListener{
+        binding.ocrLayout.setOnClickListener {
             val intent = Intent(this, OCRActivity::class.java)
             startActivity(intent)
         }
 
-        binding.rankButton.setOnClickListener{
+
+        binding.rankLayout.setOnClickListener{
             val intent = Intent(this, RankActivity::class.java)
             startActivity(intent)
         }
 
-        binding.interiorButton.setOnClickListener {
+        binding.interiorLayout.setOnClickListener {
             val intent = Intent(this, ShopCategoryActivity::class.java)
             startActivity(intent)
         }

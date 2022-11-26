@@ -20,6 +20,8 @@ class RankActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityRankBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.backButton.setOnClickListener{finish()}
+
 
         ranking = userCollectionRef.orderBy("mileage", Direction.DESCENDING)
         ranking.get().addOnSuccessListener { result ->

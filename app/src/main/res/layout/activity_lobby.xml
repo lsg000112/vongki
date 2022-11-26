@@ -1,74 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/background_beige"
     android:gravity="center"
-    android:background="@color/background_beige">
+    android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/userTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="님 반갑습니다"/>
+        android:layout_marginBottom="48dp"
+        android:text="님 반갑습니다"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/getMileageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/getMileageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="마일리지 + 1"/>
+        android:layout_marginBottom="28dp"
+        android:text="마일리지 + 1"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/mileageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="현재 마일리지 : " />
+        android:text="현재 마일리지 : "
+        app:layout_constraintBottom_toTopOf="@+id/userTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:layout="@layout/fragment_pet"
-        android:layout_weight="5"/>
-
-
+        android:layout_weight="4"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout="@layout/fragment_pet" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lobby_bottom"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:id="@+id/linearLayout"
+        android:layout_width="413dp"
+        android:layout_height="123dp"
         android:layout_weight="1"
+        android:background="@color/lobby_bottom"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView">
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp">
 
-        <Button
-            android:id="@+id/logOutButton"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="로그아웃" />
+            android:id="@+id/logoutLayout"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logouticon"
+                android:layout_weight="3"
+                android:id="@+id/logoutImage"
+                />
+            <Button
+                android:id="@+id/logOutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="로그아웃" />
+        </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/interiorLayout"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logouticon"
+            android:layout_weight="3"
+            />
         <Button
             android:id="@+id/interiorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="인테리어" />
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ocrLayout"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ocricon"
+            android:layout_weight="3"
+            />
         <Button
             android:id="@+id/ocrButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="ocr" />
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rankLayout"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rankicon"
+            android:layout_weight="3"
+            />
         <Button
             android:id="@+id/rankButton"
             android:layout_width="wrap_content"
@@ -76,8 +143,7 @@
             android:layout_weight="1"
             android:text="rank" />
     </LinearLayout>
+    </LinearLayout>
 
 
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

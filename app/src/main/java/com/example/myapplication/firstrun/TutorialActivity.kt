@@ -17,11 +17,6 @@ class TutorialActivity : AppCompatActivity(){
 
         setContentView(binding.root)
 
-        binding.info.setOnClickListener {
-            binding.infoTextView.visibility = View.VISIBLE
-            binding.infoTextView.setHeight(30)
-        }
-
         binding.button.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)

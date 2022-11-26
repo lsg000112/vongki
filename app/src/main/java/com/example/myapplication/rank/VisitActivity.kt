@@ -23,7 +23,7 @@ class VisitActivity : AppCompatActivity() {
         val currentUser = userCollectionRef.document(uid!!)
         currentUser.get().addOnSuccessListener {document ->
             if(document != null){
-                binding.visitUserName.text = document.get("nickName").toString() + "'s Room"
+                binding.visitUserName.text = document.get("nickName").toString() + "'s Home"
             }else{
                 println("다른 유저 이름 가져오기 실패")
             }
