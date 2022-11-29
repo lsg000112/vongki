@@ -131,11 +131,11 @@ class OCRActivity : AppCompatActivity() {
         }
     }
 
-    lateinit var issueNum: String
-    lateinit var date: String
-    lateinit var time:String
-    lateinit var where:String
-    lateinit var userName:String
+    var issueNum: String = ""
+    var date: String = ""
+    var time:String = ""
+    var where:String = ""
+    var userName:String = ""
 
     private fun TextRecognition(recognizer: TextRecognizer) {
         val result: Task<Text> = recognizer.process(image!!) // 이미지 인식에 성공하면 실행되는 리스너
@@ -144,17 +144,21 @@ class OCRActivity : AppCompatActivity() {
                 // Task completed successfully
                 val resultText = visionText.text
                 val s = resultText.split(": ")
+                try {
                 issueNum = s[1].split("\n")[0].replace(" ", "").replace("-", "_")
                 date = s[5].split("\n")[0]
                 time = s[6].split("\n")[0]
                 where = s[8].split("\n")[0]
                 userName = s[2].split("\n")[0]
+                 } catch (e : Exception){
+                     Toast.makeText(this,"올바르지 않은 봉사 확인서입니다.", Toast.LENGTH_LONG).show()
+                 }
                 println(issueNum)
                 userCollectionRef.document(auth.uid!!).get().addOnSuccessListener { document ->
                     val array : List<String> = document.get("issueNumRecord") as List<String>
                     val timeArray : List<String> = document.get("issueNumRecord") as List<String>
                     if(userName != document.get("name")){
-                        Toast.makeText(this, "봉사자의 이름이 일치하지 않아요!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "유효한 봉사 인증서가 아니에요!", Toast.LENGTH_LONG).show()
                     }else if(array.contains(issueNum)){
                         Toast.makeText(this, "이미 등록된 봉사 기록입니다!", Toast.LENGTH_LONG).show()
                     }else{
@@ -166,7 +170,7 @@ class OCRActivity : AppCompatActivity() {
                                     return@async true
                                 } else {
                                     println("유효성 검증 실패")
-                                    return@async false
+                                    throw NotValidException
                                 }
                             }
                         }.start()
@@ -183,7 +187,7 @@ class OCRActivity : AppCompatActivity() {
                                     userCollectionRef.document(auth.uid!!).update("mileage", (addMileage + Integer.parseInt(document.data?.get("mileage").toString())))
                                     userCollectionRef.document(auth.uid!!).update("currentMileage", (addMileage + Integer.parseInt(document.data?.get("currentMileage").toString())))
                                     userCollectionRef.document(auth.uid!!).update("issueNumRecord", FieldValue.arrayUnion(issueNum))
-                                    userCollectionRef.document(auth.uid!!).update("whereRecord", FieldValue.arrayUnion(where))
+                                    userCollectionRef.document(auth.uid!!).update("whereRecord", FieldValue.arrayUnion(where.split("(")[0]))
                                     userCollectionRef.document(auth.uid!!).update("timeRecord", FieldValue.arrayUnion(time))
                                 }
                                 else{
@@ -231,6 +235,10 @@ class OCRActivity : AppCompatActivity() {
         } else
             println("$where1!=$where2")
         println("유효성 검증 실패")
-        return false
+        throw NotValidException
     }
+}
+
+object NotValidException : Throwable() {
+
 }
