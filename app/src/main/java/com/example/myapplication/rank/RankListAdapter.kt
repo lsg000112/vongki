@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.auth.User
+import kotlinx.android.synthetic.main.item_rank.view.*
 
 class RankListAdapter(val itemList : List<User>) : RecyclerView.Adapter<RankViewHolder>() {
     override fun getItemCount(): Int {
@@ -20,7 +21,7 @@ class RankListAdapter(val itemList : List<User>) : RecyclerView.Adapter<RankView
     override fun onBindViewHolder(holder: RankViewHolder, position: Int) {
         val item = itemList[position]
         holder.apply {
-            bind(item)
+            bind(item, position.toString())
         }
     }
 }

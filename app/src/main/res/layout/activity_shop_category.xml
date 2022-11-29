@@ -18,8 +18,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <TextView
         android:id="@+id/textView3"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -79,7 +82,7 @@
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:padding="20dp"
-            android:src="@drawable/plant1" />
+            android:src="@drawable/plant" />
 
         <ImageView
             android:id="@+id/category6"
@@ -87,8 +90,29 @@
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:padding="20dp"
-            android:src="@drawable/tmp" />
+            android:src="@drawable/clock" />
+
+        <ImageView
+            android:id="@+id/category7"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:padding="20dp"
+            android:layout_columnSpan="1"
+            android:src="@drawable/wallpapericon4" />
+
+        <ImageView
+            android:id="@+id/category8"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:padding="20dp"
+            android:layout_columnSpan="1"
+            android:src="@drawable/curtainicon" />
+
 
     </GridLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

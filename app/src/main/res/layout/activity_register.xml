@@ -11,27 +11,25 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="69dp"
-        android:background="@drawable/square"
         android:paddingTop="10dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:text="봉키는 봉사를 통해 모은 마일리지로\n봉키들을 키우는 힐링 어플입니다."
         android:textAlignment="center"
         android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538" />
+        app:layout_constraintVertical_bias="0.604" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="229dp"
         android:layout_height="56dp"
-        android:layout_marginStart="88dp"
         android:layout_marginTop="160dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="이름(실명)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,8 +37,8 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="68dp"
         android:text="회원가입"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
@@ -49,11 +47,11 @@
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="228dp"
         android:layout_height="66dp"
-        android:layout_marginStart="88dp"
         android:layout_marginTop="300dp"
         android:ems="10"
         android:hint="example@example.com"
         android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,24 +59,35 @@
         android:id="@+id/editTextTextPassword"
         android:layout_width="230dp"
         android:layout_height="68dp"
-        android:layout_marginStart="84dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="패스워드는 6자리 이상 입력해주세요"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintVertical_bias="0.169" />
 
     <EditText
         android:id="@+id/editTextTextNickName"
         android:layout_width="229dp"
         android:layout_height="55dp"
-        android:layout_marginStart="88dp"
         android:layout_marginBottom="4dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="닉네임"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         app:layout_constraintVertical_bias="0.6" />

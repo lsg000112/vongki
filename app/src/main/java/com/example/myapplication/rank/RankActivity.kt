@@ -33,10 +33,8 @@ class RankActivity : AppCompatActivity(){
                     (i.get("mileage") as Long).toInt())
             }
             val adapter = RankListAdapter(rankList)
-            println(rankList)
             binding.recyclerView.adapter = adapter
         }
-    //@TODO https://dalgonakit.tistory.com/138
     }
 
 }

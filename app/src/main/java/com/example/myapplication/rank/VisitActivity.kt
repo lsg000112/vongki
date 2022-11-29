@@ -19,6 +19,8 @@ class VisitActivity : AppCompatActivity() {
         binding = ActivityVisitBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
 
+        binding.backLayout.setOnClickListener { finish() }
+
         uid = intent.getStringExtra("uid")!!
         val currentUser = userCollectionRef.document(uid!!)
         currentUser.get().addOnSuccessListener {document ->

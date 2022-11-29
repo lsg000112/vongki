@@ -41,6 +41,7 @@
         <activity android:name=".shop.ShopCategoryActivity"/>
         <activity android:name=".shop.ShopBuyActivity"/>
         <activity android:name=".rank.VisitActivity"/>
+        <activity android:name=".history.HistoryActivity"/>
     </application>
 
 </manifest>

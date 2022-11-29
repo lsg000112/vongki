@@ -4,145 +4,187 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_beige"
+    android:background="@drawable/sky"
     android:gravity="center"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/logoutLayout"
+        android:layout_width="38dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:translationZ="2dp"
+        android:layout_weight="3"
+        android:src="@drawable/logouticon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/userTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:text="님 반갑습니다"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/getMileageButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/getMileageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="28dp"
-        android:text="마일리지 + 1"
-        app:layout_constraintBottom_toTopOf="@+id/fragmentContainerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageView
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_gravity="center"
+        android:translationZ="2dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:padding="10dp"
+        android:src="@drawable/mile"
+        app:layout_constraintEnd_toStartOf="@+id/mileageTextView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/mileageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="현재 마일리지 : "
-        app:layout_constraintBottom_toTopOf="@+id/userTextView"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:text="0"
+        android:textSize="30dp"
+        android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/userTextView"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/cloud2"
+        android:gravity="center"
+        android:text="님 반갑습니다"
+        android:translationZ="2dp"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/getMileageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="마일리지 + 1"
+        android:translationZ="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_height="491dp"
+        android:translationZ="2dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout="@layout/fragment_pet" />
 
+
+
+
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="123dp"
         android:layout_weight="1"
-        android:background="@color/lobby_bottom"
         android:gravity="center"
+        android:background="@color/lobby_bottom"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:paddingTop="30dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            android:id="@+id/historyLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/logoutLayout"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
+                android:id="@+id/historyImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/logouticon"
                 android:layout_weight="3"
-                android:id="@+id/logoutImage"
-                />
+                android:src="@drawable/listicon" />
+
             <Button
-                android:id="@+id/logOutButton"
+                android:id="@+id/historyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="로그아웃" />
+                android:text="나의 봉사기록" />
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/interiorLayout"
-        android:gravity="center">
-        <ImageView
+        <LinearLayout
+            android:id="@+id/interiorLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logouticon"
-            android:layout_weight="3"
-            />
-        <Button
-            android:id="@+id/interiorButton"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:src="@drawable/shopicon" />
+
+            <Button
+                android:id="@+id/interiorButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="인테리어" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ocrLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="인테리어" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/ocrLayout"
-        android:gravity="center">
-        <ImageView
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:src="@drawable/ocricon" />
+
+            <Button
+                android:id="@+id/ocrButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="봉사 인증하기" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/rankLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ocricon"
-            android:layout_weight="3"
-            />
-        <Button
-            android:id="@+id/ocrButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="ocr" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rankLayout"
-        android:orientation="vertical"
-        android:gravity="center">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/rankicon"
-            android:layout_weight="3"
-            />
-        <Button
-            android:id="@+id/rankButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="rank" />
-    </LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:src="@drawable/rankicon" />
+
+            <Button
+                android:id="@+id/rankButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="봉사 랭킹" />
+        </LinearLayout>
     </LinearLayout>
 
 

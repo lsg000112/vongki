@@ -15,11 +15,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityOcrBinding
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizer
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import org.checkerframework.checker.units.qual.g
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 import java.io.FileNotFoundException
 import java.io.InputStream
 
@@ -31,6 +42,8 @@ class OCRActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOcrBinding
     private lateinit var ocr_result_view: TextView
     private lateinit var ocr_start_button: Button
+    private val userCollectionRef = Firebase.firestore.collection("users")
+    private val auth = Firebase.auth
 
     var imageView // 갤러리에서 가져온 이미지를 보여줄 뷰
             : ImageView? = null
@@ -46,13 +59,21 @@ class OCRActivity : AppCompatActivity() {
     var recognizer //텍스트 인식에 사용될 모델
             : TextRecognizer? = null
 
+    companion object{
+        fun say(i : Boolean) : Boolean{
+            println("asdf" + i)
+            return i
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOcrBinding.inflate(layoutInflater)
         setContentView(binding.root)
         imageView = binding.imageView
-        text_info = binding.textInfo
         recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
+
+        binding.backButton.setOnClickListener{finish()}
 
         // GET IMAGE 버튼
         btn_get_image = binding.btnGetImage;
@@ -129,9 +150,87 @@ class OCRActivity : AppCompatActivity() {
                 where = s[8].split("\n")[0]
                 userName = s[2].split("\n")[0]
                 println(issueNum)
-                var isValid = CheckValidityCoroutine.BackgroundTask(userName, issueNum, where, date, time)
-                println(isValid)
+                userCollectionRef.document(auth.uid!!).get().addOnSuccessListener { document ->
+                    val array : List<String> = document.get("issueNumRecord") as List<String>
+                    val timeArray : List<String> = document.get("issueNumRecord") as List<String>
+                    if(userName != document.get("name")){
+                        Toast.makeText(this, "봉사자의 이름이 일치하지 않아요!", Toast.LENGTH_LONG).show()
+                    }else if(array.contains(issueNum)){
+                        Toast.makeText(this, "이미 등록된 봉사 기록입니다!", Toast.LENGTH_LONG).show()
+                    }else{
+                        val isValid = CoroutineScope(Dispatchers.Main).launch {
+                            val job = CoroutineScope(Dispatchers.IO).async {
+                                if (checkValidity(userName, issueNum, where, time, date)
+                                ) {
+                                    println("유효성 검증 완료")
+                                    return@async true
+                                } else {
+                                    println("유효성 검증 실패")
+                                    return@async false
+                                }
+                            }
+                        }.start()
+                        isValid.runCatching {
+                        }.onSuccess {
+                            val hour = time.split("시간")[0]
+                            val min = time.split("시간")[1]
+                            val h = hour.replace("[^0-9]".toRegex(), "")
+                            val m = min.replace("[^0-9]".toRegex(), "")
+                            val addMileage = Integer.parseInt(h) * 60 + Integer.parseInt(m)
+
+                            userCollectionRef.document(auth.uid!!).get().addOnSuccessListener { document ->
+                                if(document != null){
+                                    userCollectionRef.document(auth.uid!!).update("mileage", (addMileage + Integer.parseInt(document.data?.get("mileage").toString())))
+                                    userCollectionRef.document(auth.uid!!).update("currentMileage", (addMileage + Integer.parseInt(document.data?.get("currentMileage").toString())))
+                                    userCollectionRef.document(auth.uid!!).update("issueNumRecord", FieldValue.arrayUnion(issueNum))
+                                    userCollectionRef.document(auth.uid!!).update("whereRecord", FieldValue.arrayUnion(where))
+                                    userCollectionRef.document(auth.uid!!).update("timeRecord", FieldValue.arrayUnion(time))
+                                }
+                                else{
+                                    println("mileage parse update failed")
+                                }
+                                Toast.makeText(
+                                    this,
+                                    time + " 봉사로 " + addMileage + "마일리지가 적립되었어요!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }.onFailure {
+                            Toast.makeText(this, "봉사 확인서 검증에 실패했어요", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
             }
-        // 이미지 인식에 실패하면 실행되는 리스너
+    }
+
+    fun checkValidity(userName:String, issueNum: String, where: String, time: String, date: String) : Boolean{
+        val doc2: Document = Jsoup.connect("https://www.1365.go.kr/vols/P9330/srvcgud/cnfrmnIssu.do").data("schVltrNm", userName).data("schIssuNo", issueNum).get()
+        println(time)
+        println(where)
+        println(date)
+        val hour: String = doc2.getElementsByTag("dd").get(10).text()
+        val date2: String = doc2.getElementsByTag("dd").get(8).text()
+        var where2: String = doc2.getElementsByClass("tit_board_list").text()
+        where2 = where2.substringBefore(")")
+        val where1 = where.substringBefore(")")
+        if (where1 == where2) {
+            println("where 같음")
+            if (hour == time.replace(" ", "").replace("총", "")) {
+                println("time 같음")
+                if (date2 == date.substring(0, 10).replace("-", ".")) {
+                    println("date 같음")
+                    println("유효성 검증 완료")
+                    return true
+                }
+                else
+                    println("$date!=$date2")
+            }
+            else{
+                println("$hour!=$time")
+            }
+        } else
+            println("$where1!=$where2")
+        println("유효성 검증 실패")
+        return false
     }
 }

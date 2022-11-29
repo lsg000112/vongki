@@ -5,37 +5,36 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-
     <ImageView
         android:id="@+id/petImage"
         android:layout_width="99dp"
         android:layout_height="103dp"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="314dp"
         android:src="@drawable/egg1"
+        android:padding="5dp"
         android:translationZ="3dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <ImageView
         android:id="@+id/windowImage"
-        android:layout_width="88dp"
+        android:layout_width="89dp"
         android:layout_height="91dp"
-        android:layout_marginStart="224dp"
+        android:layout_marginStart="192dp"
         android:layout_marginTop="176dp"
-        android:src="@drawable/window"
         android:translationZ="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/sofaImage"
-        android:layout_width="111dp"
-        android:layout_height="118dp"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="256dp"
-        android:src="@drawable/sofa"
+        android:layout_width="76dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="318dp"
+        android:padding="2dp"
         android:translationZ="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,55 +42,78 @@
     <ImageView
         android:id="@+id/propImage"
         android:layout_width="56dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="200dp"
-        android:src="@drawable/clock"
+        android:layout_height="35dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="208dp"
+        android:translationZ="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/curtainImage"
+        android:layout_width="101dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="180dp"
         android:translationZ="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/plantImage"
-        android:layout_width="58dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="272dp"
-        android:layout_marginTop="308dp"
-        android:src="@drawable/plant1"
-        android:translationZ="2dp"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="348dp"
+        android:translationZ="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/roofImage"
-        android:layout_width="58dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/roof"
+        android:layout_width="289dp"
+        android:layout_height="141dp"
         android:translationZ="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.006" />
 
     <ImageView
         android:id="@+id/wallImage"
-        android:layout_width="58dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="312dp"
-        android:layout_marginTop="28dp"
-        android:src="@drawable/wall"
+        android:layout_width="300dp"
+        android:layout_height="278dp"
+        android:layout_marginTop="136dp"
+        android:src="@drawable/wall1"
         android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/wallpaperImage"
+        android:layout_width="200dp"
+        android:layout_height="265dp"
+        android:layout_marginTop="134dp"
+        android:translationZ="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        />
 
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="1080px"
-        android:translationZ="1dp"
+        android:layout_height="491dp"
+        android:translationZ="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseroom" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

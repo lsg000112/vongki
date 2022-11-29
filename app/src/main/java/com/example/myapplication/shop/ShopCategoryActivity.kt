@@ -21,7 +21,7 @@ class ShopCategoryActivity :AppCompatActivity(){
 
         println(binding.category1)
         var id: Int
-        for(i: Int in 1..6){
+        for(i: Int in 1..8){
             id = resources.getIdentifier("category$i", "id", packageName)
             binding.root.findViewById<View?>(id)
                     .setOnClickListener {
