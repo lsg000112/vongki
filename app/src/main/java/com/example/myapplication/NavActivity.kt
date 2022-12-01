@@ -46,11 +46,11 @@ class NavActivity : AppCompatActivity() {
                 println("mileage change listen failed")
             }
             if (snapshot != null && snapshot.exists()) {
-                println("current mileage : " + snapshot.data?.get("currentMileage"))
-                binding.mileageTextView.text = snapshot.data?.get("currentMileage").toString()
-                val ments = arrayOf("오늘도 힘찬 하루 보내세요!", "당신의 봉사생활을 응원해요!", "오늘도 너무 고생 많았어요!", "당신의 선택을 믿고 힘내세요!", "실수를 두려워하지 마세요!", "지금도 잘하고 있어요!")
+                val crntMlg = snapshot.data?.get("currentMileage")
+                binding.mileageTextView.text = crntMlg.toString()
+                val ments = arrayOf("오늘도 힘찬 하루 보내세요!", "당신의 봉사생활을 응원해요!", "오늘도 너무 고생 많았어요!", "지금도 잘하고 있어요!")
                 val ment = Random.nextInt(ments.size)
-                if(snapshot.data?.get("currentMileage") == 0){
+                if(crntMlg == 0){
                     binding.userTextView.text = snapshot.data?.get("nickName").toString() + "님 환영해요!\n봉사확인서를 업로드하고 마일리지를 받아봐요"
                 }else{
                     binding.userTextView.text = snapshot.data?.get("nickName").toString() + "님 반가워요,\n" + ments[ment]

@@ -58,6 +58,7 @@ class OCRActivity : AppCompatActivity() {
             :Button? = null
     var recognizer //텍스트 인식에 사용될 모델
             : TextRecognizer? = null
+    var isImageUploaded : Boolean = false
 
     companion object{
         fun say(i : Boolean) : Boolean{
@@ -81,17 +82,23 @@ class OCRActivity : AppCompatActivity() {
         // IMAGE DETECTION 버튼
         btn_detection_image = binding.btnDetectionImage;
 
+
         val onBtnGetImageClickListner = View.OnClickListener {
             println("b1")
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             //intent.setType(MediaStore.Images.Media.CONTENT_TYPE)
             intent.type = "image/*"
             startActivityForResult(intent, REQUEST_CODE)
+
         }
 
         val onBtnDetectionImageClickListner = View.OnClickListener {
             println("b2")
-            TextRecognition(recognizer!!)
+            if(isImageUploaded == true) {
+                TextRecognition(recognizer!!)
+            }else{
+                Toast.makeText(this, "앨범에서 이미지를 선택해 주세요", Toast.LENGTH_SHORT).show()
+            }
         }
 
         btn_get_image!!.setOnClickListener(onBtnGetImageClickListner)
@@ -106,12 +113,12 @@ class OCRActivity : AppCompatActivity() {
          }
          when (requestCode) {
              REQUEST_CODE -> {
-                 data?:return
+                 data ?: return
                  val uri = data.data as Uri
                  setImage(uri)
+                 isImageUploaded = true
                  // 이미지 URI를 가지고 하고 싶은거 하면 된다.
              }
-
              else -> {
                  Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
              }
@@ -124,6 +131,7 @@ class OCRActivity : AppCompatActivity() {
             val `in`: InputStream? = contentResolver.openInputStream(uri)
             bitmap = BitmapFactory.decodeStream(`in`)
             imageView!!.setImageBitmap(bitmap)
+
             image = InputImage.fromBitmap(bitmap!!, 0)
             Log.e("setImage", "이미지 to 비트맵")
         } catch (e: FileNotFoundException) {
@@ -151,16 +159,16 @@ class OCRActivity : AppCompatActivity() {
                 where = s[8].split("\n")[0]
                 userName = s[2].split("\n")[0]
                  } catch (e : Exception){
-                     Toast.makeText(this,"올바르지 않은 봉사 확인서입니다.", Toast.LENGTH_LONG).show()
+                     Toast.makeText(this,"올바르지 않은 봉사 확인서입니다.", Toast.LENGTH_SHORT).show()
                  }
                 println(issueNum)
                 userCollectionRef.document(auth.uid!!).get().addOnSuccessListener { document ->
                     val array : List<String> = document.get("issueNumRecord") as List<String>
                     val timeArray : List<String> = document.get("issueNumRecord") as List<String>
                     if(userName != document.get("name")){
-                        Toast.makeText(this, "유효한 봉사 인증서가 아니에요!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "유효한 봉사 인증서가 아니에요!", Toast.LENGTH_SHORT).show()
                     }else if(array.contains(issueNum)){
-                        Toast.makeText(this, "이미 등록된 봉사 기록입니다!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "이미 등록된 봉사 기록입니다!", Toast.LENGTH_SHORT).show()
                     }else{
                         val isValid = CoroutineScope(Dispatchers.Main).launch {
                             val job = CoroutineScope(Dispatchers.IO).async {
@@ -181,7 +189,6 @@ class OCRActivity : AppCompatActivity() {
                             val h = hour.replace("[^0-9]".toRegex(), "")
                             val m = min.replace("[^0-9]".toRegex(), "")
                             val addMileage = Integer.parseInt(h) * 60 + Integer.parseInt(m)
-
                             userCollectionRef.document(auth.uid!!).get().addOnSuccessListener { document ->
                                 if(document != null){
                                     userCollectionRef.document(auth.uid!!).update("mileage", (addMileage + Integer.parseInt(document.data?.get("mileage").toString())))
@@ -195,12 +202,12 @@ class OCRActivity : AppCompatActivity() {
                                 }
                                 Toast.makeText(
                                     this,
-                                    time + " 봉사로 " + addMileage + "마일리지가 적립되었어요!",
+                                    h +"시간 " + m + "분 봉사로 " + addMileage + "마일리지가 적립되었어요!",
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
                         }.onFailure {
-                            Toast.makeText(this, "봉사 확인서 검증에 실패했어요", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "봉사 확인서 검증에 실패했어요", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
