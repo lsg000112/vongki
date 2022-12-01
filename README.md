@@ -54,6 +54,12 @@ Android(Kotlin)
 <img src="/screenshot/screenshot4.png" width="150"/>
 </p>
 
+### 기존 회원의 로그인
+<p>
+<img src="/screenshot/screenshot28.png" width="150"/>
+<img src="/screenshot/screenshot29.png" width="150"/>
+  </p>
+
 ### 봉사 활동서 업로드로 마일리지 적립
 
 <p>
