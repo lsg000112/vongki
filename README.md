@@ -21,6 +21,7 @@ Android(Kotlin)
 
 ### 나만의 집 꾸미기, 동물 캐릭터(강아지, 고양이, 토끼) 키우기
 
+- 3종류의 알 선택에 따라 다른 동물 성장
 - 누적 마일리지에 따라 봉키 성장
 - 마일리지를 소모하여 인테리어 소품(지붕, 벽, 벽지, 창문, 의자, 시계, 화분, 커튼; 카테고리 별 3~6종류) 구매 가능
 
@@ -45,4 +46,84 @@ Android(Kotlin)
 
 ## 스크린샷
 
-<img src="이미지주소.png" width="200"/>
+### 첫 실행 후 회원가입, 봉키 알 선택, 메인화면
+<p>
+<img src="/screenshot/screenshot1.png" width="150"/>
+<img src="/screenshot/screenshot2.png" width="150"/>
+<img src="/screenshot/screenshot3.png" width="150"/>
+<img src="/screenshot/screenshot4.png" width="150"/>
+</p>
+
+### 봉사 활동서 업로드로 마일리지 적립
+
+<p>
+<img src="/screenshot/screenshot5.png" width="150"/>
+<img src="/screenshot/screenshot6.png" width="150"/>
+<img src="/screenshot/screenshot7.png" width="150"/>
+<img src="/screenshot/screenshot8.png" width="150"/>
+</p>
+
+### 봉키 성장과정 (고양이, 강아지, 토끼)
+<p>
+<img src="/app/src/main/res/drawable/egg1.png" width="50"/>
+<img src="/app/src/main/res/drawable/cat1.png"width="30"/>
+<img src="/app/src/main/res/drawable/cat2.png"width="30"/>
+<img src="/app/src/main/res/drawable/cat3.png"width="50"/>
+<img src="/app/src/main/res/drawable/cat4.png"width="50"/>
+<img src="/app/src/main/res/drawable/cat5.png"width="50"/>
+</p><p>
+<img src="/app/src/main/res/drawable/egg2.png" width="50"/>
+<img src="/app/src/main/res/drawable/dog1.png"width="30"/>
+<img src="/app/src/main/res/drawable/dog2.png"width="30"/>
+<img src="/app/src/main/res/drawable/dog3.png"width="50"/>
+<img src="/app/src/main/res/drawable/dog4.png"width="50"/>
+<img src="/app/src/main/res/drawable/dog5.png"width="50"/>
+  </p><p>
+  <img src="/app/src/main/res/drawable/egg3.png" width="50"/>
+<img src="/app/src/main/res/drawable/rabit1.png"width="30"/>
+<img src="/app/src/main/res/drawable/rabit2.png"width="30"/>
+<img src="/app/src/main/res/drawable/rabit3.png"width="50"/>
+<img src="/app/src/main/res/drawable/rabit4.png"width="50"/>
+<img src="/app/src/main/res/drawable/rabit5.png"width="50"/>
+  </p>
+  
+### 소품 카테고리 선택 및 각 카테고리
+
+<p>
+<img src="/screenshot/screenshot9.png" width="150"/>
+<img src="/screenshot/screenshot10.png" width="150"/>
+<img src="/screenshot/screenshot11.png" width="150"/>
+<img src="/screenshot/screenshot12.png" width="150"/>
+  <img src="/screenshot/screenshot13.png" width="150"/>
+<img src="/screenshot/screenshot14.png" width="150"/>
+<img src="/screenshot/screenshot15.png" width="150"/>
+<img src="/screenshot/screenshot16.png" width="150"/>
+  <img src="/screenshot/screenshot17.png" width="150"/>
+  </p>
+  
+### 아이템 구매 후 적용 모습(시계, 전체)
+
+<p>
+<img src="/screenshot/screenshot17.png" width="150"/>
+<img src="/screenshot/screenshot18.png" width="150"/>
+<img src="/screenshot/screenshot19.png" width="150"/>
+<img src="/screenshot/screenshot20.png" width="150"/>
+  <img src="/screenshot/screenshot21.png" width="150"/> </p>
+  
+### 봉사 기록 확인
+<img src="/screenshot/screenshot22.png" width="150"/>
+
+### 봉사 랭킹 및 집들이
+<p>
+  <img src="/screenshot/screenshot23.png" width="150"/>
+  <img src="/screenshot/screenshot24.png" width="150"/>
+  <img src="/screenshot/screenshot25.png" width="150"/>
+  </p>
+  
+### 로그아웃 및 애플리케이션 종료
+
+<p>
+  <img src="/screenshot/screenshot26.png" width="150"/>
+  <img src="/screenshot/screenshot27.png" width="150"/>
+  </p>
+
