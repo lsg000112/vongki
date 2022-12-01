@@ -158,22 +158,22 @@ class OCRActivity : AppCompatActivity() {
                 time = s[6].split("\n")[0]
                 where = s[8].split("\n")[0]
                 userName = s[2].split("\n")[0]
+                    println(issueNum + date + time + where + userName)
                  } catch (e : Exception){
                      Toast.makeText(this,"올바르지 않은 봉사 확인서입니다.", Toast.LENGTH_SHORT).show()
                  }
-                println(issueNum)
                 userCollectionRef.document(auth.uid!!).get().addOnSuccessListener { document ->
                     val array : List<String> = document.get("issueNumRecord") as List<String>
                     val timeArray : List<String> = document.get("issueNumRecord") as List<String>
-                    if(userName != document.get("name")){
+                    if(userName != document.get("name").toString().substring(0, userName.length)){
+                        println("name error" + userName + document.get("name").toString().split(" "))
                         Toast.makeText(this, "유효한 봉사 인증서가 아니에요!", Toast.LENGTH_SHORT).show()
                     }else if(array.contains(issueNum)){
                         Toast.makeText(this, "이미 등록된 봉사 기록입니다!", Toast.LENGTH_SHORT).show()
                     }else{
                         val isValid = CoroutineScope(Dispatchers.Main).launch {
                             val job = CoroutineScope(Dispatchers.IO).async {
-                                if (checkValidity(userName, issueNum, where, time, date)
-                                ) {
+                                if (checkValidity(userName, issueNum, where, time, date)) {
                                     println("유효성 검증 완료")
                                     return@async true
                                 } else {
