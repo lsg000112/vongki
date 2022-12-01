@@ -91,6 +91,7 @@ Android(Kotlin)
 
 <p>
 <img src="/screenshot/screenshot9.png" width="150"/>
+  </p><p>
 <img src="/screenshot/screenshot10.png" width="150"/>
 <img src="/screenshot/screenshot11.png" width="150"/>
 <img src="/screenshot/screenshot12.png" width="150"/>
@@ -104,7 +105,6 @@ Android(Kotlin)
 ### 아이템 구매 후 적용 모습(시계, 전체)
 
 <p>
-<img src="/screenshot/screenshot17.png" width="150"/>
 <img src="/screenshot/screenshot18.png" width="150"/>
 <img src="/screenshot/screenshot19.png" width="150"/>
 <img src="/screenshot/screenshot20.png" width="150"/>
