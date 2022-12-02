@@ -75,6 +75,10 @@ class OCRActivity : AppCompatActivity() {
         recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
 
         binding.backButton.setOnClickListener{finish()}
+        binding.btn1365.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.1365.go.kr/vols/main.do"));
+            startActivity(intent)
+        }
 
         // GET IMAGE 버튼
         btn_get_image = binding.btnGetImage;
@@ -158,7 +162,6 @@ class OCRActivity : AppCompatActivity() {
                 time = s[6].split("\n")[0]
                 where = s[8].split("\n")[0]
                 userName = s[2].split("\n")[0]
-                    println(issueNum + date + time + where + userName)
                  } catch (e : Exception){
                      Toast.makeText(this,"올바르지 않은 봉사 확인서입니다.", Toast.LENGTH_SHORT).show()
                  }
